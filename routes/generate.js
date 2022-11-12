@@ -7,7 +7,7 @@ var apis = require("../models/apis");
 /* GET home page. */
 router.get("/apis", function (req, res, next) {
   console.log("here");
-  apis.find({}, function (err, apilist) {
+  apis.find({},null,{ skip: 20*parseInt(req.query.page) ,limit:20}, function (err, apilist) {
     res.send(apilist);
   });
 });
