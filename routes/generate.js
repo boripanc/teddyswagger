@@ -8,7 +8,11 @@ var apis = require("../models/apis");
 router.get("/apis", function (req, res, next) {
   console.log("here");
   apis.find({},null,{ skip: 20*parseInt(req.query.page) ,limit:20}, function (err, apilist) {
-    res.send(apilist);
+    var result = {result:apilist};
+    result.totalrecord = apis.count();
+    result.currentpage = req.query.page;
+    result.pagesize= 20;
+    res.send(result);
   });
 });
 
