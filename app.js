@@ -10,8 +10,9 @@ var generateRouter = require('./routes/generate');
 var app = express();
 
 
-app.use(cors())
-app.options('*', cors())
+app.use(cors({
+  origin: '*'
+}));
 app.use(logger('dev'));
 app.use(express.json());
 
