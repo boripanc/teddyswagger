@@ -6,12 +6,16 @@ var apis = require("../models/apis");
 
 /* GET home page. */
 router.get("/apis", function (req, res, next) {
-  console.log("here");
-  apis.find({},null,{ skip: 20*parseInt(req.query.page) ,limit:20}, function (err, apilist) {
+    var page= req.query.page;
+    if(page == null)page=1;
+    if(page==0)page=1;
+    var s = 20*parseInt(page-1);
+  apis.find({},null,{ skip:  s,limit:20}, async function (err, apilist) {
     var result = {result:apilist};
-    result.totalrecord = apis.count();
-    result.currentpage = req.query.page;
-    result.pagesize= 20;
+    result.pageinfo={};
+    result.pageinfo.totalrecord = await apis.count({});
+    result.pageinfo.currentpage = page;
+    result.pageinfo.pagesize= 20;
     res.send(result);
   });
 });
