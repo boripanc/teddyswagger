@@ -3,8 +3,10 @@ const { request } = require("../app");
 var router = express.Router();
 var apis = require("../models/apis");
 
+var cors = require('cors')
+
 /* GET home page. */
-router.get("/apis", function (req, res, next) {
+router.get("/apis", cors(), function (req, res, next) {
   console.log("here");
   apis.find({}, function (err, apilist) {
     res.send(apilist);
