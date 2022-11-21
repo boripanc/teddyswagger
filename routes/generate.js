@@ -1,7 +1,10 @@
 var express = require("express");
 const { request } = require("../app");
 var router = express.Router();
-var apis, operations = require("../models/apis");
+var {
+    apis,
+    operations
+} = require("../models/apis");
 
 
 /* GET home page. */
