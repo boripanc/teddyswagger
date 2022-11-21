@@ -15,7 +15,7 @@ const operationSchema = new Schema({
     apiid: { type: String },
     HTTPMethod: { type: String },
     Resource: { type: String },
-    Parameters: { type: Objects },
+    Parameters: { type: Object },
     RequestBody: { type: Object },
     ResponseBody: { type: Object }
 });
