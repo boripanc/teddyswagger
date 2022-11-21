@@ -20,4 +20,4 @@ const operationSchema = new Schema({
     ResponseBody: { type: Object }
 });
 const operations = mongoose.model('operation', operationSchema);
-module.exports = apis, operations;
+module.exports = { apis, operations };
