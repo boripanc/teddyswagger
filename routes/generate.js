@@ -39,7 +39,7 @@ router.post("/apis", function(req, res, next) {
     napi.save();
     res.send(napi);
 });
-router.post("/apis/:apiId/Operation", function(req, res, next) {
+router.post("/apis/:apiId/operation", function(req, res, next) {
     var noperation = new operations({ apiid: req.params.apiId, HTTPMethod: req.body.HTTPMethod, Resource: req.body.Resource, Parameters: req.body.Parameters, RequestBody: req.body.RequestBody, ResponseBody: req.body.ResponseBody });
     noperation.save();
     res.send(noperation);
