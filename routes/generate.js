@@ -1,7 +1,7 @@
 var express = require("express");
 const { request } = require("../app");
 var router = express.Router();
-var apis = require("../models/apis");
+var apis, operations = require("../models/apis");
 
 
 /* GET home page. */
@@ -39,10 +39,10 @@ router.post("/apis", function(req, res, next) {
     napi.save();
     res.send(napi);
 });
-router.post("/apis/:apiId", function(req, res, next) {
-    apis.findByIdAndUpdate(req.params.apiId, { Operations: req.body }, function(err, apilist) {
-        res.send(apilist);
-    });
+router.post("/apis/:apiId/Operation", function(req, res, next) {
+    var noperation = new operations({ apiid: req.params.apiId, HTTPMethod: req.body.HTTPMethod, Resource: req.body.Resource, Parameters: req.body.Parameters, RequestBody: req.body.RequestBody, ResponseBody: req.body.ResponseBody });
+    noperation.save();
+    res.send(noperation);
 });
 
 router.put("/apis/:apiId", function(req, res, next) {
